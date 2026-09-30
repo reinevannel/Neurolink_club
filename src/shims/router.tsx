@@ -17,6 +17,15 @@ type RouterValue = {
 
 const RouterContext = createContext<RouterValue | null>(null);
 
+const BASE = "/Neurolink_club";
+
+function stripBase(pathname: string) {
+  if (pathname.startsWith(BASE)) {
+    return pathname.slice(BASE.length) || "/";
+  }
+  return pathname || "/";
+}
+
 function useRouterValue() {
   const value = useContext(RouterContext);
   if (!value) throw new Error("Routeur absent");
@@ -72,7 +81,7 @@ export function Link({
   const href = fill(to, params);
   return (
     <a
-      href={href}
+      href={BASE + (href.startsWith("/") ? href : `/${href}`)}
       className={className}
       onClick={(event) => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
@@ -99,18 +108,19 @@ export function useRouterState<T>(options: { select: (state: { location: { pathn
 }
 
 export function RouterView({ children }: { children: (page: ReactNode) => ReactNode }) {
-  const [path, setPath] = useState(() => window.location.pathname || "/");
+  const [path, setPath] = useState(() => stripBase(window.location.pathname));
 
   useEffect(() => {
-    const onPop = () => setPath(window.location.pathname || "/");
+    const onPop = () => setPath(stripBase(window.location.pathname));
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
   const navigate = (to: string) => {
-    const next = to.startsWith("/") ? to : `/${to}`;
+    const clean = to.startsWith("/") ? to : `/${to}`;
+    const next = BASE + clean;
     window.history.pushState({}, "", next);
-    setPath(next);
+    setPath(clean);
   };
 
   const found = routes.find((route) => matchPattern(route.pattern, path));
