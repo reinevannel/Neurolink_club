@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   AetherNest — design tokens
+   Palette calme (case study NeuroLink Club) :
+   teal profond, sauge, crème, pêche en accent rare.
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Nunito", "Segoe UI", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-forest: #6b9b7e;
+  --color-sky: #7ab8c8;
+  --color-earth: #c4a87a;
+}
+
+/* Thème lumineux — sanctuaire crème */
+:root {
+  --background: #eee9e2;
+  --foreground: #0a2f35;
+  --card: #f6f2ec;
+  --card-foreground: #0a2f35;
+  --popover: #f6f2ec;
+  --popover-foreground: #0a2f35;
+  --primary: #0a3c42;
+  --primary-foreground: #f6f2ec;
+  --secondary: #d5e4da;
+  --secondary-foreground: #0a2f35;
+  --muted: #ddd8d0;
+  --muted-foreground: #3d5c56;
+  --accent: #c57a3a;
+  --accent-foreground: #2a0f00;
+  --destructive: #a33b32;
+  --destructive-foreground: #fff7f5;
+  --border: color-mix(in oklab, #0a3c42 14%, transparent);
+  --input: color-mix(in oklab, #0a3c42 14%, transparent);
+  --input-background: #e4e0d8;
+  --ring: #0a3c42;
+  --sidebar: #f6f2ec;
+  --sidebar-foreground: #0a2f35;
+  --sidebar-primary: #0a3c42;
+  --sidebar-primary-foreground: #f6f2ec;
+  --sidebar-accent: #ddd8d0;
+  --sidebar-accent-foreground: #0a2f35;
+  --sidebar-border: color-mix(in oklab, #0a3c42 12%, transparent);
+  --shadow-soft: 0 8px 24px color-mix(in oklab, #0a3c42 10%, transparent);
+}
+
+/* Thème calme — teal profond (défaut) */
+.dark {
+  --background: #0b2830;
+  --foreground: #d5ebe4;
+  --card: #0f3038;
+  --card-foreground: #d5ebe4;
+  --popover: #0f3038;
+  --popover-foreground: #d5ebe4;
+  --primary: #a8c4b2;
+  --primary-foreground: #0a2430;
+  --secondary: #163840;
+  --secondary-foreground: #a8c4b2;
+  --muted: #163840;
+  --muted-foreground: #8fbfb0;
+  --accent: #e0a36a;
+  --accent-foreground: #1a0800;
+  --destructive: #e07060;
+  --destructive-foreground: #1a0800;
+  --border: color-mix(in oklab, #a8c4b2 12%, transparent);
+  --input: color-mix(in oklab, #a8c4b2 10%, transparent);
+  --input-background: #163840;
+  --ring: #a8c4b2;
+  --sidebar: #0f3038;
+  --sidebar-foreground: #d5ebe4;
+  --sidebar-primary: #a8c4b2;
+  --sidebar-primary-foreground: #0a2430;
+  --sidebar-accent: #163840;
+  --sidebar-accent-foreground: #a8c4b2;
+  --sidebar-border: color-mix(in oklab, #a8c4b2 10%, transparent);
+  --shadow-soft: 0 8px 24px color-mix(in oklab, #041418 45%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: calc(16px * var(--user-font-scale, 1));
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Taille de texte choisie par l'utilisateur */
+html[data-font="1"] { --user-font-scale: 1; }
+html[data-font="2"] { --user-font-scale: 1.12; }
+html[data-font="3"] { --user-font-scale: 1.28; }
+
+/* Densité compacte */
+html[data-density="dense"] .page-pad {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Réduction de mouvement */
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mode surcharge : on cache le décor */
+html[data-mode="surcharge"] .deco,
+html[data-mode="surcharge"] .hide-overload {
+  display: none !important;
+}
+
+/* Mode calme : palette encore plus retenue */
+html[data-mode="calme"] {
+  --accent: var(--primary);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1rem;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Ciel du sanctuaire (CSS, pas d'image bruyante) */
+.sanctuary {
+  background:
+    radial-gradient(1200px 480px at 80% -10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 60%),
+    radial-gradient(900px 400px at 0% 100%, color-mix(in oklab, var(--forest) 16%, transparent), transparent 55%),
+    var(--background);
+}
+
+.breath-ring {
+  animation: breathe 8s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(0.92); opacity: 0.55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+html[data-motion="off"] .breath-ring {
+  animation: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
