@@ -127,4 +127,9 @@ export function RouterView({ children }: { children: (page: ReactNode) => ReactN
   const Page = found?.component;
   const page = Page ? <Page /> : <p className="p-8 text-sm text-muted-foreground">Page introuvable.</p>;
 
-  return <RouterContext.Provider value={{ path, navigate }}
+  return (
+    <RouterContext.Provider value={{ path, navigate }}>
+      {children(page)}
+    </RouterContext.Provider>
+  );
+}
